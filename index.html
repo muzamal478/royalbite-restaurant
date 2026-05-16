@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RoyalBite Restaurant | Premium Restaurant Website</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #ff6b00;
+            --secondary: #121212;
+            --light: #ffffff;
+            --gray: #f5f5f5;
+            --dark: #000000;
+            --text: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        /* LOADER */
+
+        #loader {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: #000;
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .loader-circle {
+            width: 90px;
+            height: 90px;
+            border: 7px solid rgba(255, 255, 255, 0.2);
+            border-top: 7px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loader-text {
+            color: #fff;
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: #000 !important;
+            padding: 15px 0;
+            transition: 0.4s;
+        }
+
+        .navbar-brand {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary) !important;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -4px;
+            left: 0;
+            transition: 0.4s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .book-btn {
+            background: var(--primary);
+            color: #fff !important;
+            padding: 10px 22px !important;
+            border-radius: 30px;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 70px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin: 25px 0;
+            color: #ddd;
+        }
+
+        .hero-btn {
+            background: var(--primary);
+            padding: 14px 35px;
+            border-radius: 40px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: 0.4s;
+        }
+
+        .hero-btn:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-5px);
+        }
+
+        .hero-img {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* SECTION */
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 45px;
+            font-weight: 800;
+            color: #000;
+        }
+
+        .section-title p {
+            color: #777;
+        }
+
+        /* ABOUT */
+
+        .about-img img {
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-content h3 {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .about-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-top: 20px;
+            transition: 0.4s;
+        }
+
+        .about-box:hover {
+            transform: translateY(-10px);
+        }
+
+        /* MENU */
+
+        .menu-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: 0.4s;
+            height: 100%;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .menu-card img {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .menu-content {
+            padding: 25px;
+        }
+
+        .menu-content h4 {
+            font-weight: 700;
+        }
+
+        .price {
+            color: var(--primary);
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        /* SERVICES */
+
+        .service-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: 0.4s;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-10px);
+        }
+
+        .service-card i {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        /* TESTIMONIAL */
+
+        .testimonial {
+            background: #111;
+            color: #fff;
+        }
+
+        .testimonial-card {
+            background: #1e1e1e;
+            padding: 35px;
+            border-radius: 20px;
+        }
+
+        .testimonial-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        /* GALLERY */
+
+        .gallery img {
+            width: 100%;
+            border-radius: 20px;
+            transition: 0.4s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* CONTACT */
+
+        .contact-form {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control {
+            height: 55px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        textarea.form-control {
+            height: 150px;
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            border: none;
+            padding: 15px 35px;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 30px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #000;
+            color: #fff;
+            padding: 70px 0 20px;
+        }
+
+        .footer-logo {
+            font-size: 35px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .footer-links a {
+            display: block;
+            color: #ccc;
+            margin-bottom: 10px;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-icons a {
+            width: 45px;
+            height: 45px;
+            background: #222;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #fff;
+            margin-right: 10px;
+            transition: 0.4s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #222;
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+            color: #999;
+        }
+
+        /* BACK TO TOP */
+
+        #backTop {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: var(--primary);
+            color: #fff;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 9999;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* WHATSAPP */
+
+        .whatsapp-btn {
+            position: fixed;
+            left: 25px;
+            bottom: 25px;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: #25d366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 35px;
+            z-index: 9999;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:991px) {
+
+            .hero {
+                text-align: center;
+                padding-top: 120px;
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+
+        }
+
+        @media(max-width:768px) {
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOADER -->
+
+    <div id="loader">
+        <div class="loader-circle"></div>
+        <div class="loader-text">ROYALBITE</div>
+    </div>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+
+            <a class="navbar-brand" href="#">RoyalBite</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+
+                <ul class="navbar-nav ms-auto align-items-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Menu</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link book-btn" href="#contact">Book Table</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="container">
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-6">
+
+                    <h1>
+                        Delicious Food For <span>Every Mood</span>
+                    </h1>
+
+                    <p>
+                        Experience premium dining with world-class chefs, fresh ingredients, modern ambiance, and
+                        unforgettable taste.
+                    </p>
+
+                    <a href="#menu" class="hero-btn">
+                        Explore Menu
+                    </a>
+
+                </div>
+
+                <div class="col-lg-6 text-center mt-5 mt-lg-0">
+
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1974&auto=format&fit=crop"
+                        class="img-fluid hero-img rounded-4 shadow" alt="Food Image">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>About Our Restaurant</h2>
+
+                <p>
+                    Premium quality food with luxury dining experience.
+                </p>
+
+            </div>
+
+            <div class="row align-items-center">
+
+                <div class="col-lg-6">
+
+                    <div class="about-img">
+
+                        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop"
+                            class="img-fluid" alt="Restaurant">
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6 mt-5 mt-lg-0">
+
+                    <div class="about-content">
+
+                        <h3>
+                            We Serve The Best Taste & Experience
+                        </h3>
+
+                        <p>
+                            RoyalBite is a modern luxury restaurant website designed for restaurant owners who want a
+                            premium online presence. This website includes elegant design, SEO structure, responsive
+                            layout, animations, contact forms, WhatsApp integration, and high-end user experience.
+                        </p>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+
+                                <div class="about-box">
+
+                                    <h5>Fresh Ingredients</h5>
+
+                                    <p>
+                                        Daily fresh and organic products.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <div class="about-box">
+
+                                    <h5>Master Chefs</h5>
+
+                                    <p>
+                                        Professional world-class chefs.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- MENU -->
+
+    <section id="menu" style="background:#f8f8f8;">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Popular Menu</h2>
+
+                <p>
+                    Our trending dishes loved by customers.
+                </p>
+
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1981&auto=format&fit=crop">
+
+                        <div class="menu-content">
+
+                            <h4>Italian Pizza</h4>
+
+                            <p>
+                                Cheesy premium pizza with spicy toppings.
+                            </p>
+
+                            <div class="price">$25</div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1974&auto=format&fit=crop">
+
+                        <div class="menu-content">
+
+                            <h4>Beef Burger</h4>
+
+                            <p>
+                                Juicy grilled burger with fresh fries.
+                            </p>
+
+                            <div class="price">$18</div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+
+                    <div class="menu-card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2070&auto=format&fit=crop">
+
+                        <div class="menu-content">
+
+                            <h4>Healthy Salad</h4>
+
+                            <p>
+                                Fresh healthy salad with rich nutrition.
+                            </p>
+
+                            <div class="price">$15</div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SERVICES -->
+
+    <section id="services">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Our Services</h2>
+
+                <p>
+                    Luxury dining and premium services.
+                </p>
+
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-lg-4">
+
+                    <div class="service-card">
+
+                        <i class="fa-solid fa-utensils"></i>
+
+                        <h4>Fine Dining</h4>
+
+                        <p>
+                            Premium interior and luxury atmosphere.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="service-card">
+
+                        <i class="fa-solid fa-truck"></i>
+
+                        <h4>Fast Delivery</h4>
+
+                        <p>
+                            Quick home delivery with quality packaging.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="service-card">
+
+                        <i class="fa-solid fa-champagne-glasses"></i>
+
+                        <h4>Private Events</h4>
+
+                        <p>
+                            Birthday parties, meetings and events.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- TESTIMONIAL -->
+
+    <section class="testimonial">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2 style="color:#fff;">Customer Reviews</h2>
+
+                <p>
+                    What our happy customers say.
+                </p>
+
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-lg-4">
+
+                    <div class="testimonial-card">
+
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg">
+
+                        <h5>Sarah Khan</h5>
+
+                        <p>
+                            Amazing ambiance and delicious food. Highly recommended.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="testimonial-card">
+
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg">
+
+                        <h5>Ali Ahmed</h5>
+
+                        <p>
+                            One of the best restaurant experiences ever.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="testimonial-card">
+
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg">
+
+                        <h5>Emma Watson</h5>
+
+                        <p>
+                            Professional service and modern atmosphere.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- GALLERY -->
+
+    <section id="gallery">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Food Gallery</h2>
+
+                <p>
+                    Explore our premium dishes.
+                </p>
+
+            </div>
+
+            <div class="row g-4 gallery">
+
+                <div class="col-lg-4">
+                    <img
+                        src="https://images.unsplash.com/photo-1432139509613-5c4255815697?q=80&w=2000&auto=format&fit=crop">
+                </div>
+
+                <div class="col-lg-4">
+                    <img
+                        src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=2000&auto=format&fit=crop">
+                </div>
+
+                <div class="col-lg-4">
+                    <img
+                        src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=2000&auto=format&fit=crop">
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section id="contact" style="background:#f8f8f8;">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Contact Us</h2>
+
+                <p>
+                    Book your table or contact us now.
+                </p>
+
+            </div>
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-8">
+
+                    <div class="contact-form">
+
+                        <form id="contactForm">
+
+                            <input type="text" class="form-control" placeholder="Your Name" id="name" required>
+
+                            <input type="email" class="form-control" placeholder="Your Email" id="email" required>
+
+                            <input type="text" class="form-control" placeholder="Subject" id="subject" required>
+
+                            <textarea class="form-control" placeholder="Your Message" id="message" required></textarea>
+
+                            <button type="submit" class="submit-btn">
+                                Send Message
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-4">
+
+                    <h2 class="footer-logo">
+                        RoyalBite
+                    </h2>
+
+                    <p class="mt-3">
+                        Modern premium restaurant website design for restaurant businesses and portfolio projects.
+                    </p>
+
+                    <div class="social-icons mt-4">
+
+                        <a href="#">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 mt-5 mt-lg-0">
+
+                    <h4>Quick Links</h4>
+
+                    <div class="footer-links mt-4">
+
+                        <a href="#home">Home</a>
+                        <a href="#about">About</a>
+                        <a href="#menu">Menu</a>
+                        <a href="#services">Services</a>
+                        <a href="#gallery">Gallery</a>
+                        <a href="#contact">Contact</a>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 mt-5 mt-lg-0">
+
+                    <h4>Contact Info</h4>
+
+                    <div class="footer-links mt-4">
+
+                        <a href="#">Islamabad, Pakistan</a>
+                        <a href="#">+92 300 1234567</a>
+                        <a href="#">info@royalbite.com</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <p>
+                    © 2026 RoyalBite Restaurant. All Rights Reserved.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- BACK TO TOP -->
+
+    <div id="backTop">
+        <i class="fa-solid fa-arrow-up"></i>
+    </div>
+
+    <!-- WHATSAPP -->
+
+    <a href="https://wa.me/923001234567?text=Hello%20I%20want%20a%20restaurant%20website" class="whatsapp-btn"
+        target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- SCRIPTS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        // LOADER
+
+        window.addEventListener("load", () => {
+
+            setTimeout(() => {
+                document.getElementById("loader").style.display = "none";
+            }, 1500)
+
+        })
+
+        // BACK TO TOP
+
+        const backTop = document.getElementById("backTop");
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 300) {
+                backTop.style.display = "flex";
+            } else {
+                backTop.style.display = "none";
+            }
+
+        })
+
+        backTop.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            })
+        })
+
+        // CONTACT FORM MAIL
+
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let subject = document.getElementById("subject").value;
+            let message = document.getElementById("message").value;
+
+            let body =
+                "Name: " + name + "%0D%0A" +
+                "Email: " + email + "%0D%0A" +
+                "Subject: " + subject + "%0D%0A" +
+                "Message: " + message;
+
+            window.location.href =
+                "mailto:yourgmail@gmail.com?subject=" + subject + "&body=" + body;
+
+        })
+
+        // NAVBAR BG
+
+        window.addEventListener("scroll", () => {
+
+            let navbar = document.querySelector(".navbar");
+
+            if (window.scrollY > 50) {
+                navbar.style.background = "#000";
+                navbar.style.boxShadow = "0 5px 20px rgba(0,0,0,0.3)";
+            } else {
+                navbar.style.boxShadow = "none";
+            }
+
+        })
+
+    </script>
+
+</body>
+
+</html>
