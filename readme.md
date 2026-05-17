@@ -6,7 +6,7 @@ A modern, responsive and premium restaurant website built using HTML5, CSS3, Jav
 
 # 🚀 Live Demo
 
-[https://your-netlify-link.netlify.app](https://muzamal478.github.io/royalbite-restaurant/)
+[royalbite-restaurant](https://muzamal478.github.io/royalbite-restaurant/)
 
 ---
 
